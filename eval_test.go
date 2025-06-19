@@ -14,8 +14,8 @@ import (
 
 	"github.com/gdt-dev/gdt"
 	api "github.com/gdt-dev/gdt/api"
-	gdthttp "github.com/gdt-dev/http"
-	"github.com/gdt-dev/http/test/server"
+	gdthttp "github.com/gdt-dev-http"
+	"github.com/gdt-dev-http/test/server"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
