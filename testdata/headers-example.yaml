@@ -1,0 +1,23 @@
+name: headers example
+description: Example test showing how to use custom HTTP headers
+tests:
+ - name: test with custom headers
+   GET: /books
+   headers:
+     Authorization: Bearer token123
+     Content-Type: application/json
+     X-Custom-Header: custom-value
+     User-Agent: gdt-http-test/1.0
+   assert:
+     status: 200
+ - name: test with authentication header
+   POST: /books
+   headers:
+     Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+     Content-Type: application/json
+   data:
+     title: Test Book
+     author_id: "1"
+     publisher_id: "1"
+   assert:
+     status: 201 

@@ -5,11 +5,12 @@
 package http
 
 import (
+	"context"
 	nethttp "net/http"
 	"strings"
 
+	api "github.com/gdt-dev/gdt/api"
 	gdtjson "github.com/gdt-dev/gdt/assertion/json"
-	gdttypes "github.com/gdt-dev/gdt/types"
 )
 
 // Expect contains one or more assertions about an HTTP response
@@ -88,7 +89,7 @@ func (a *assertions) Terminal() bool {
 
 // OK checks all the assertions against the supplied arguments and returns true
 // if all assertions pass.
-func (a *assertions) OK() bool {
+func (a *assertions) OK(ctx context.Context) bool {
 	if a.exp == nil {
 		return true
 	}
@@ -103,8 +104,7 @@ func (a *assertions) OK() bool {
 	}
 	if exp.JSON != nil {
 		ja := gdtjson.New(exp.JSON, a.b)
-		if !ja.OK() {
-			a.terminal = ja.Terminal()
+		if !ja.OK(ctx) {
 			for _, f := range ja.Failures() {
 				a.Fail(f)
 			}
@@ -138,7 +138,7 @@ func newAssertions(
 	exp *Expect,
 	r *nethttp.Response,
 	b []byte,
-) gdttypes.Assertions {
+) api.Assertions {
 	return &assertions{
 		failures: []error{},
 		exp:      exp,

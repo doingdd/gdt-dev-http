@@ -56,6 +56,14 @@ Each of the test unit objects have the following attributes:
   * `PUT`: (optional) string with the path or URL to issue an HTTP PUT request
   * `PATCH`: (optional) string with the path or URL to issue an HTTP PATCH request
   * `DELETE`: (optional) string with the path or URL to issue an HTTP DELETE request
+* `headers`: (optional) map of string to string containing HTTP headers to be
+  sent with the request. For example:
+  ```yaml
+  headers:
+    Authorization: Bearer token123
+    Content-Type: application/json
+    X-Custom-Header: custom-value
+  ```
 * `data`: (optional) if present, will be encoded into the HTTP request
   payload. Elements of the `data` structure may be JSONPath expressions (see [below](#use-jsonpath-expressions-to-substitute-fixture-data))
 * `assert`: (optional) object describing the **assertions** to make about the
@@ -116,16 +124,27 @@ test unit:
      status: 201
 ```
 
-The above `data` would be encoded into the following HTTP request body:
+#### Using custom HTTP headers
 
-```json
-{
-     "title": "For Whom The Bell Tolls",
-     "published_on": "1940-10-21",
-     "pages": 480,
-     "author_id": "1",
-     "publisher_id": "1"
-}
+You can specify custom HTTP headers to be sent with the request using the
+`headers` field. This is especially useful for authentication, content type
+specification, or any other custom headers your API requires:
+
+```yaml
+ - name: create a new book with authentication
+   POST: /books
+   headers:
+     Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+     Content-Type: application/json
+     X-Request-ID: req-12345
+   data:
+     title: For Whom The Bell Tolls
+     published_on: 1940-10-21
+     pages: 480
+     author_id: "1"
+     publisher_id: "1"
+   assert:
+     status: 201
 ```
 
 #### Use JSONPath expressions to substitute fixture data

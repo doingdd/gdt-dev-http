@@ -5,11 +5,12 @@
 package http
 
 import (
+	"context"
 	nethttp "net/http"
 	"net/http/httptest"
 	"strings"
 
-	gdttypes "github.com/gdt-dev/gdt/types"
+	api "github.com/gdt-dev/gdt/api"
 )
 
 const (
@@ -23,15 +24,16 @@ type httpServerFixture struct {
 	useTLS  bool
 }
 
-func (f *httpServerFixture) Start() {
+func (f *httpServerFixture) Start(ctx context.Context) error {
 	if !f.useTLS {
 		f.server = httptest.NewServer(f.handler)
 	} else {
 		f.server = httptest.NewTLSServer(f.handler)
 	}
+	return nil
 }
 
-func (f *httpServerFixture) Stop() {
+func (f *httpServerFixture) Stop(ctx context.Context) {
 	f.server.Close()
 }
 
@@ -59,6 +61,6 @@ func (f *httpServerFixture) State(key string) interface{} {
 // http.Handler. The returned fixture exposes an "http.base_url" state key that
 // test cases of type "http" examine to determine the base URL the tests should
 // hit
-func NewServerFixture(h nethttp.Handler, useTLS bool) gdttypes.Fixture {
+func NewServerFixture(h nethttp.Handler, useTLS bool) api.Fixture {
 	return &httpServerFixture{handler: h, useTLS: useTLS}
 }

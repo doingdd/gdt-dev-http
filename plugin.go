@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/gdt-dev/gdt"
-	gdttypes "github.com/gdt-dev/gdt/types"
+	api "github.com/gdt-dev/gdt/api"
 )
 
 func init() {
@@ -21,8 +21,8 @@ const (
 
 type plugin struct{}
 
-func (p *plugin) Info() gdttypes.PluginInfo {
-	return gdttypes.PluginInfo{
+func (p *plugin) Info() api.PluginInfo {
+	return api.PluginInfo{
 		Name: pluginName,
 	}
 }
@@ -31,11 +31,11 @@ func (p *plugin) Defaults() yaml.Unmarshaler {
 	return &Defaults{}
 }
 
-func (p *plugin) Specs() []gdttypes.Evaluable {
-	return []gdttypes.Evaluable{&Spec{}}
+func (p *plugin) Specs() []api.Evaluable {
+	return []api.Evaluable{&Spec{}}
 }
 
 // Plugin returns the HTTP gdt plugin
-func Plugin() gdttypes.Plugin {
+func Plugin() api.Plugin {
 	return &plugin{}
 }

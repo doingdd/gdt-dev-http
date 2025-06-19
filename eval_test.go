@@ -13,8 +13,7 @@ import (
 	"testing"
 
 	"github.com/gdt-dev/gdt"
-	gdterrors "github.com/gdt-dev/gdt/errors"
-	gdttypes "github.com/gdt-dev/gdt/types"
+	api "github.com/gdt-dev/gdt/api"
 	gdthttp "github.com/gdt-dev/http"
 	"github.com/gdt-dev/http/test/server"
 	"github.com/stretchr/testify/assert"
@@ -43,7 +42,7 @@ func data() *dataset {
 	return data
 }
 
-func dataFixture() gdttypes.Fixture {
+func dataFixture() api.Fixture {
 	f, err := os.Open(dataFilePath)
 	if err != nil {
 		panic(err)
@@ -66,7 +65,7 @@ func TestFixturesNotSetup(t *testing.T) {
 
 	err = s.Run(context.TODO(), t)
 	require.NotNil(err)
-	assert.ErrorIs(err, gdterrors.RuntimeError)
+	assert.ErrorIs(err, api.RuntimeError)
 }
 
 func setup(ctx context.Context) context.Context {

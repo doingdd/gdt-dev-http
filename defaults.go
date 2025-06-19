@@ -7,9 +7,8 @@ package http
 import (
 	"context"
 
+	"github.com/gdt-dev/gdt/api"
 	gdtcontext "github.com/gdt-dev/gdt/context"
-	"github.com/gdt-dev/gdt/errors"
-	gdttypes "github.com/gdt-dev/gdt/types"
 	"gopkg.in/yaml.v3"
 )
 
@@ -29,21 +28,21 @@ type Defaults struct {
 
 func (d *Defaults) UnmarshalYAML(node *yaml.Node) error {
 	if node.Kind != yaml.MappingNode {
-		return errors.ExpectedMapAt(node)
+		return api.ExpectedMapAt(node)
 	}
 	// maps/structs are stored in a top-level Node.Content field which is a
 	// concatenated slice of Node pointers in pairs of key/values.
 	for i := 0; i < len(node.Content); i += 2 {
 		keyNode := node.Content[i]
 		if keyNode.Kind != yaml.ScalarNode {
-			return errors.ExpectedScalarAt(keyNode)
+			return api.ExpectedScalarAt(keyNode)
 		}
 		key := keyNode.Value
 		valNode := node.Content[i+1]
 		switch key {
 		case "http":
 			if valNode.Kind != yaml.MappingNode {
-				return errors.ExpectedMapAt(valNode)
+				return api.ExpectedMapAt(valNode)
 			}
 			hd := httpDefaults{}
 			if err := valNode.Decode(&hd); err != nil {
@@ -80,7 +79,7 @@ func (d *Defaults) BaseURLFromContext(ctx context.Context) string {
 }
 
 // fromBaseDefaults returns an gdt-http plugin-specific Defaults from a Spec
-func fromBaseDefaults(base *gdttypes.Defaults) *Defaults {
+func fromBaseDefaults(base *api.Defaults) *Defaults {
 	if base == nil {
 		return nil
 	}

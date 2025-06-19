@@ -5,12 +5,12 @@
 package http
 
 import (
-	gdttypes "github.com/gdt-dev/gdt/types"
+	api "github.com/gdt-dev/gdt/api"
 )
 
 // Spec describes a test of a single HTTP request and response
 type Spec struct {
-	gdttypes.Spec
+	api.Spec
 	// URL being called by HTTP client
 	URL string `yaml:"url,omitempty"`
 	// HTTP Method specified by HTTP client
@@ -25,6 +25,8 @@ type Spec struct {
 	PATCH string `yaml:"PATCH,omitempty"`
 	// Shortcut for URL and Method of "DELETE"
 	DELETE string `yaml:"DELETE,omitempty"`
+	// Headers contains HTTP headers to be sent with the request
+	Headers map[string]string `yaml:"headers,omitempty"`
 	// JSON payload to send along in request
 	Data interface{} `yaml:"data,omitempty"`
 	// Assert is the assertions for the HTTP response
@@ -41,10 +43,20 @@ func (s *Spec) Title() string {
 	return s.Method + ":" + s.URL
 }
 
-func (s *Spec) SetBase(b gdttypes.Spec) {
+func (s *Spec) SetBase(b api.Spec) {
 	s.Spec = b
 }
 
-func (s *Spec) Base() *gdttypes.Spec {
+func (s *Spec) Base() *api.Spec {
 	return &s.Spec
+}
+
+// Retry returns the Evaluable's Retry override, if any
+func (s *Spec) Retry() *api.Retry {
+	return s.Spec.Retry
+}
+
+// Timeout returns the Evaluable's Timeout override, if any
+func (s *Spec) Timeout() *api.Timeout {
+	return s.Spec.Timeout
 }

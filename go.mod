@@ -1,9 +1,11 @@
 module github.com/gdt-dev/http
 
-go 1.19
+go 1.21
+
+toolchain go1.21.6
 
 require (
-	github.com/gdt-dev/gdt v1.1.0
+	github.com/gdt-dev/gdt v1.9.7
 	github.com/google/uuid v1.3.0
 	github.com/samber/lo v1.38.1
 	github.com/stretchr/testify v1.8.4
@@ -14,6 +16,7 @@ require (
 require (
 	github.com/PaesslerAG/gval v1.0.0 // indirect
 	github.com/PaesslerAG/jsonpath v0.1.1 // indirect
+	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

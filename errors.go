@@ -7,7 +7,7 @@ package http
 import (
 	"fmt"
 
-	gdterrors "github.com/gdt-dev/gdt/errors"
+	api "github.com/gdt-dev/gdt/api"
 )
 
 var (
@@ -16,7 +16,7 @@ var (
 	ErrAliasOrURL = fmt.Errorf(
 		"%w: either specify a URL and Method or specify one "+
 			"of GET, POST, PUT, PATCH or DELETE",
-		gdterrors.ErrParse,
+		api.ErrParse,
 	)
 	// ErrExpectedLocationHeader indicates that the user specified the special
 	// `$LOCATION` string in the `url` or `GET` fields of the HTTP test spec
@@ -24,7 +24,7 @@ var (
 	// Header within.
 	ErrExpectedLocationHeader = fmt.Errorf(
 		"%w: expected Location HTTP Header in previous response",
-		gdterrors.RuntimeError,
+		api.RuntimeError,
 	)
 )
 
@@ -33,7 +33,7 @@ var (
 func HTTPStatusNotEqual(exp, got interface{}) error {
 	return fmt.Errorf(
 		"%w: expected HTTP status %v but got %v",
-		gdterrors.ErrNotEqual, exp, got,
+		api.ErrNotEqual, exp, got,
 	)
 }
 
@@ -42,7 +42,7 @@ func HTTPStatusNotEqual(exp, got interface{}) error {
 func HTTPHeaderNotIn(element, container interface{}) error {
 	return fmt.Errorf(
 		"%w: expected HTTP headers %v to contain %v",
-		gdterrors.ErrNotIn, container, element,
+		api.ErrNotIn, container, element,
 	)
 }
 
@@ -51,6 +51,6 @@ func HTTPHeaderNotIn(element, container interface{}) error {
 func HTTPNotInBody(element string) error {
 	return fmt.Errorf(
 		"%w: expected HTTP body to contain %v",
-		gdterrors.ErrNotIn, element,
+		api.ErrNotIn, element,
 	)
 }
