@@ -1,4 +1,4 @@
-module github.com/gdt-dev/http
+module github.com/gdt-dev-http
 
 go 1.21
 
