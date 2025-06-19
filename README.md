@@ -1,7 +1,7 @@
-# Go Declarative Testing - HTTP
+# Go Declarative Testing - HTTP (Enhanced)
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/gdt-dev/http.svg)](https://pkg.go.dev/github.com/gdt-dev/http)
-[![Go Report Card](https://goreportcard.com/badge/github.com/gdt-dev/http)](https://goreportcard.com/report/github.com/gdt-dev/http)
+[![Go Reference](https://pkg.go.dev/badge/github.com/gdt/http.svg)](https://pkg.go.dev/github.com/gdt/http)
+[![Go Report Card](https://goreportcard.com/badge/github.com/gdt/http)](https://goreportcard.com/report/github.com/gdt/http)
 [![Build Status](https://github.com/gdt-dev/http/actions/workflows/gate-tests.yml/badge.svg?branch=main)](https://github.com/gdt-dev/http/actions)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -16,11 +16,15 @@ then builds a set of Go structures that the standard Go
 
 [gdt]: https://github.com/gdt-dev/gdt
 
-This `github.com/gdt-dev/http` (shortened hereafter to `gdt-http`) repository
+This `github.com/gdt/http` (enhanced version of gdt-http) repository
 is a companion Go library for `gdt` that allows test authors to cleanly
 describe functional tests of HTTP APIs using a simple, clear YAML format.
 `gdt-http` parses YAML files that describe HTTP requests and assertions about
 what the HTTP response should contain.
+
+**Enhanced Features:**
+- ✅ Custom HTTP headers support
+- ✅ All original gdt-http functionality
 
 ## Installation
 
@@ -30,7 +34,7 @@ application's test code as a Golang package dependency.
 Install `gdt-http` into your `$GOPATH` by executing:
 
 ```
-go get -u github.com/gdt-dev/http
+go get -u github.com/gdt/http
 ```
 
 ## `gdt-http` test file structure
