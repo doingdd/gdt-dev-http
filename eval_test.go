@@ -12,10 +12,10 @@ import (
 	"path/filepath"
 	"testing"
 
+	gdthttp "github.com/doingdd/http"
+	"github.com/doingdd/http/test/server"
 	"github.com/gdt-dev/gdt"
 	api "github.com/gdt-dev/gdt/api"
-	gdthttp "github.com/gdt/http"
-	"github.com/gdt/http/test/server"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

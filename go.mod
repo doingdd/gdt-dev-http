@@ -1,4 +1,4 @@
-module github.com/gdt/http
+module github.com/doingdd/http
 
 go 1.21
 

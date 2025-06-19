@@ -32,7 +32,7 @@
 git init
 
 # 添加远程仓库
-git remote add origin https://github.com/gdt/http.git
+git remote add origin https://github.com/doingdd/http.git
 
 # 添加所有文件
 git add .
@@ -60,28 +60,28 @@ git push origin v1.0.0
 
 发布后，你可以通过以下方式验证：
 
-1. 访问：https://pkg.go.dev/github.com/gdt/http
+1. 访问：https://pkg.go.dev/github.com/doingdd/http
 2. 如果没有立即显示，可以手动触发：
-   - 访问：https://proxy.golang.org/github.com/gdt/http/@v/list
-   - 或者访问：https://sum.golang.org/lookup/github.com/gdt/http@v1.0.0
+   - 访问：https://proxy.golang.org/github.com/doingdd/http/@v/list
+   - 或者访问：https://sum.golang.org/lookup/github.com/doingdd/http@v1.0.0
 
 ### 5. 其他用户如何使用你的包
 
 其他开发者可以通过以下方式使用你的增强版gdt-http：
 
 ```bash
-go get github.com/gdt/http
+go get github.com/doingdd/http
 ```
 
 在他们的代码中：
 
 ```go
-import "github.com/gdt/http"
+import "github.com/doingdd/http"
 ```
 
 ## 重要提醒
 
-1. **包名注意事项**：`github.com/gdt/http` 这个名字很简洁，但需要你有对 `gdt` 这个GitHub组织的控制权
+1. **包名注意事项**：`github.com/doingdd/http` 这个名字很简洁，但需要你有对 `gdt` 这个GitHub组织的控制权
 2. **版本管理**：建议使用语义化版本 (semantic versioning)
 3. **文档**：确保README.md中包含清晰的安装和使用说明
 4. **许可证**：确保包含适当的开源许可证

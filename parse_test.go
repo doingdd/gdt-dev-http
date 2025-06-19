@@ -13,7 +13,7 @@ import (
 	"github.com/gdt-dev/gdt"
 	"github.com/gdt-dev/gdt/api"
 	gdtjson "github.com/gdt-dev/gdt/assertion/json"
-	http "github.com/gdt/http"
+	http "github.com/doingdd/http"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
